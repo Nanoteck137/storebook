@@ -1,0 +1,241 @@
+{
+  "version": 1,
+  "structures": [
+    {
+      "name": "Collection",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "omitEmpty": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "omitEmpty": false
+        }
+      ]
+    },
+    {
+      "name": "CollectionImage",
+      "fields": [
+        {
+          "name": "collectionId",
+          "type": "string",
+          "omitEmpty": false
+        },
+        {
+          "name": "hash",
+          "type": "string",
+          "omitEmpty": false
+        },
+        {
+          "name": "filename",
+          "type": "string",
+          "omitEmpty": false
+        },
+        {
+          "name": "url",
+          "type": "string",
+          "omitEmpty": false
+        }
+      ]
+    },
+    {
+      "name": "CreateCollection",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "omitEmpty": false
+        }
+      ]
+    },
+    {
+      "name": "CreateCollectionBody",
+      "fields": [
+        {
+          "name": "title",
+          "type": "string",
+          "omitEmpty": false
+        }
+      ]
+    },
+    {
+      "name": "EditCollectionBody",
+      "fields": [
+        {
+          "name": "title",
+          "type": "*string",
+          "omitEmpty": true
+        }
+      ]
+    },
+    {
+      "name": "GetCollection",
+      "fields": [
+        {
+          "name": "page",
+          "type": "Page",
+          "omitEmpty": false
+        },
+        {
+          "name": "collections",
+          "type": "[]Collection",
+          "omitEmpty": false
+        }
+      ]
+    },
+    {
+      "name": "GetCollectionById",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "omitEmpty": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "omitEmpty": false
+        }
+      ]
+    },
+    {
+      "name": "GetCollectionImages",
+      "fields": [
+        {
+          "name": "images",
+          "type": "[]CollectionImage",
+          "omitEmpty": false
+        }
+      ]
+    },
+    {
+      "name": "GetSystemInfo",
+      "fields": [
+        {
+          "name": "version",
+          "type": "string",
+          "omitEmpty": false
+        }
+      ]
+    },
+    {
+      "name": "Page",
+      "fields": [
+        {
+          "name": "page",
+          "type": "int",
+          "omitEmpty": false
+        },
+        {
+          "name": "perPage",
+          "type": "int",
+          "omitEmpty": false
+        },
+        {
+          "name": "totalItems",
+          "type": "int",
+          "omitEmpty": false
+        },
+        {
+          "name": "totalPages",
+          "type": "int",
+          "omitEmpty": false
+        }
+      ]
+    },
+    {
+      "name": "Signin",
+      "fields": [
+        {
+          "name": "token",
+          "type": "string",
+          "omitEmpty": false
+        }
+      ]
+    },
+    {
+      "name": "SigninBody",
+      "fields": [
+        {
+          "name": "password",
+          "type": "string",
+          "omitEmpty": false
+        }
+      ]
+    }
+  ],
+  "endpoints": [
+    {
+      "type": "api",
+      "name": "CreateCollection",
+      "method": "POST",
+      "path": "/api/v1/collections",
+      "response": "CreateCollection",
+      "body": "CreateCollectionBody"
+    },
+    {
+      "type": "api",
+      "name": "DeleteCollection",
+      "method": "DELETE",
+      "path": "/api/v1/collections/:id"
+    },
+    {
+      "type": "api",
+      "name": "EditCollection",
+      "method": "PATCH",
+      "path": "/api/v1/collections/:id",
+      "body": "EditCollectionBody"
+    },
+    {
+      "type": "api",
+      "name": "GetCollectionById",
+      "method": "GET",
+      "path": "/api/v1/collections/:id",
+      "response": "GetCollectionById"
+    },
+    {
+      "type": "normal",
+      "name": "GetCollectionImage",
+      "method": "GET",
+      "path": "/files/collections/:id/images/:file"
+    },
+    {
+      "type": "api",
+      "name": "GetCollectionImages",
+      "method": "GET",
+      "path": "/api/v1/collections/:id/images",
+      "response": "GetCollectionImages"
+    },
+    {
+      "type": "api",
+      "name": "GetCollections",
+      "method": "GET",
+      "path": "/api/v1/collections",
+      "response": "GetCollection"
+    },
+    {
+      "type": "api",
+      "name": "GetSystemInfo",
+      "method": "GET",
+      "path": "/api/v1/system/info",
+      "response": "GetSystemInfo"
+    },
+    {
+      "type": "api",
+      "name": "Signin",
+      "method": "POST",
+      "path": "/api/v1/auth/signin",
+      "response": "Signin",
+      "body": "SigninBody"
+    },
+    {
+      "type": "form",
+      "name": "UploadToCollection",
+      "method": "POST",
+      "path": "/api/v1/collections/:id/upload"
+    }
+  ]
+}
